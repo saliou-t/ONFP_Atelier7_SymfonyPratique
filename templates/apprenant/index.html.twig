@@ -3,6 +3,9 @@
     {% block title %}Apprenant{% endblock %}
         {% block body %}
     <div class="container shadow mb-4">
+
+    {# on va boucler sur la variable apprenant pour afficher tous les apprenants #}
+
         {% for apprenants in apprenant %}
             <div class="jumbotron shadow">
                 <div class="row">
@@ -24,6 +27,12 @@
                             <div class="card-title  h3 text-dark"> {{apprenants.attentes}}</div>
                         </div>
                     </div> 
+                </div>
+
+                {# on ajout un petit boutton pour supprimer un apprenant #}
+
+                <div class="text-right">
+                    <a href="{{ path ('deleteApp', {id: apprenants.id}) }}">Supprimer</a>
                 </div>
             </div>
         {% endfor %}
