@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}Apprenant{% endblock %}
+        {% block body %}
+    <div class="container shadow mb-4">
+        {% for apprenants in apprenant %}
+            <div class="jumbotron shadow">
+                <div class="row">
+                    <div class="col-9 ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="card-title  h3 text-dark"> <span>{{apprenants.prenom}}</span> <span>{{apprenants.nom}}</span> <br><br><span class="h6 text-dark">{{apprenants.telephone}}</span></div>
+                            </div>    
+                            <div class="col-4">
+                                <div class="card-title  h3 text-dark"> {{apprenants.adresse}}</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card-title  h3 text-dark"> {{apprenants.telephone}}</div>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="container">
+                                <div class="card-title  h3 text-dark"> {{apprenants.attentes |raw}}</div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        {% endfor %}
+    {% endblock %}
+		
+    {% block javascripts %}{% endblock %}
+
