@@ -1,0 +1,140 @@
+warning: LF will be replaced by CRLF in src/Controller/ApprenantController.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in templates/apprenant/index.html.twig.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in templates/base.html.twig.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/Controller/ApprenantController.php b/src/Controller/ApprenantController.php[m
+[1mindex 0c14708..cc5415c 100644[m
+[1m--- a/src/Controller/ApprenantController.php[m
+[1m+++ b/src/Controller/ApprenantController.php[m
+[36m@@ -2,6 +2,8 @@[m
+ [m
+ namespace App\Controller;[m
+ [m
+[32m+[m[32muse App\Entity\Apprenant;[m
+[32m+[m[32muse App\Repository\ApprenantRepository;[m
+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;[m
+ use Symfony\Component\HttpFoundation\Response;[m
+ use Symfony\Component\Routing\Annotation\Route;[m
+[36m@@ -9,10 +11,12 @@[m [muse Symfony\Component\Routing\Annotation\Route;[m
+ class ApprenantController extends AbstractController[m
+ {[m
+     #[Route('/apprenant', name: 'apprenant')][m
+[31m-    public function index(): Response[m
+[32m+[m[32m    public function index( ApprenantRepository $Apprenantrepo): Response[m
+     {[m
+[32m+[m[32m        $apprenants = $Apprenantrepo->findAll();[m
+[32m+[m
+         return $this->render('apprenant/index.html.twig', [[m
+[31m-            'controller_name' => 'ApprenantController',[m
+[32m+[m[32m            'apprenant' => $apprenants[m
+         ]);[m
+     }[m
+ }[m
+[1mdiff --git a/templates/apprenant/index.html.twig b/templates/apprenant/index.html.twig[m
+[1mindex 892d611..0489e4b 100644[m
+[1m--- a/templates/apprenant/index.html.twig[m
+[1m+++ b/templates/apprenant/index.html.twig[m
+[36m@@ -1,20 +1,33 @@[m
+ {% extends 'base.html.twig' %}[m
+ [m
+[31m-{% block title %}Hello ApprenantController!{% endblock %}[m
+[32m+[m[32m    {% block title %}Apprenant{% endblock %}[m
+[32m+[m[32m        {% block body %}[m
+[32m+[m[32m    <div class="container shadow mb-4">[m
+[32m+[m[32m        {% for apprenants in apprenant %}[m
+[32m+[m[32m            <div class="jumbotron shadow">[m
+[32m+[m[32m                <div class="row">[m
+[32m+[m[32m                    <div class="col-9 ">[m
+[32m+[m[32m                        <div class="row">[m
+[32m+[m[32m                            <div class="col-5">[m
+[32m+[m[32m                                <div class="card-title  h3 text-dark"> <span>{{apprenants.prenom}}</span> <span>{{apprenants.nom}}</span> <br><br><span class="h6 text-dark">{{apprenants.telephone}}</span></div>[m
+[32m+[m[32m                            </div>[m[41m    [m
+[32m+[m[32m                            <div class="col-4">[m
+[32m+[m[32m                                <div class="card-title  h3 text-dark"> {{apprenants.adresse}}</div>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="col-3">[m
+[32m+[m[32m                                <div class="card-title  h3 text-dark"> {{apprenants.telephone}}</div>[m
+[32m+[m[32m                            </div>[m[41m      [m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="col-3">[m
+[32m+[m[32m                        <div class="container">[m
+[32m+[m[32m                                <div class="card-title  h3 text-dark"> {{apprenants.attentes |raw}}</div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m[41m [m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        {% endfor %}[m
+[32m+[m[32m    {% endblock %}[m
+[32m+[m[41m		[m
+[32m+[m[32m    {% block javascripts %}{% endblock %}[m
+ [m
+[31m-{% block body %}[m
+[31m-<style>[m
+[31m-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }[m
+[31m-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }[m
+[31m-</style>[m
+[31m-[m
+[31m-<div class="example-wrapper">[m
+[31m-    <h1>Hello {{ controller_name }}! ✅</h1>[m
+[31m-[m
+[31m-    This friendly message is coming from:[m
+[31m-    <ul>[m
+[31m-        <li>Your controller at <code><a href="{{ 'C:/Users/zallt/OneDrive/Bureau/Simplon/veille7_pratiqueSurLesFramworks/CRUD_Symfony/src/Controller/ApprenantController.php'|file_link(0) }}">src/Controller/ApprenantController.php</a></code></li>[m
+[31m-        <li>Your template at <code><a href="{{ 'C:/Users/zallt/OneDrive/Bureau/Simplon/veille7_pratiqueSurLesFramworks/CRUD_Symfony/templates/apprenant/index.html.twig'|file_link(0) }}">templates/apprenant/index.html.twig</a></code></li>[m
+[31m-    </ul>[m
+[31m-</div>[m
+[31m-{% endblock %}[m
+[1mdiff --git a/templates/base.html.twig b/templates/base.html.twig[m
+[1mindex 16d7273..51c0cd9 100644[m
+[1m--- a/templates/base.html.twig[m
+[1m+++ b/templates/base.html.twig[m
+[36m@@ -5,6 +5,9 @@[m
+         <title>{% block title %}Welcome!{% endblock %}</title>[m
+         {# Run `composer require symfony/webpack-encore-bundle`[m
+            and uncomment the following Encore helpers to start using Symfony UX #}[m
+[32m+[m[32m            <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">[m
+[32m+[m[32m            <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">[m
+[32m+[m[32m            <link rel="icon" href="https://images.unsplash.com/photo-1613859080556-6e1e98c98723?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60">[m
+         {% block stylesheets %}[m
+             {#{{ encore_entry_link_tags('app') }}#}[m
+         {% endblock %}[m
+[36m@@ -14,6 +17,35 @@[m
+         {% endblock %}[m
+     </head>[m
+     <body>[m
+[31m-        {% block body %}{% endblock %}[m
+[32m+[m[32m    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">[m
+[32m+[m[32m  <div class="container-fluid">[m
+[32m+[m[32m    <a class="navbar-brand" href="#">Sama School</a>[m
+[32m+[m[32m    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">[m
+[32m+[m[32m      <span class="navbar-toggler-icon"></span>[m
+[32m+[m[32m    </button>[m
+[32m+[m
+[32m+[m[32m    <div class="collapse navbar-collapse" id="navbarColor01">[m
+[32m+[m[32m      <ul class="navbar-nav me-auto">[m
+[32m+[m[32m        <li class="nav-item">[m
+[32m+[m[32m          <a class="nav-link" href="#">Apprenants</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m          <li class="nav-item">[m
+[32m+[m[32m          <a class="nav-link" href="#">Formations</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m          <li class="nav-item">[m
+[32m+[m[32m          <a class="nav-link" href="#">Insert Apprenant</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m          <li class="nav-item">[m
+[32m+[m[32m          <a class="nav-link" href="#">Insert Evaluation</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m      </ul>[m
+[32m+[m[41m      [m
+[32m+[m[32m    </div>[m
+[32m+[m[32m  </div>[m
+[32m+[m[32m</nav>[m
+[32m+[m[32m        {% block body %}[m
+[32m+[m
+[32m+[m[32m        {% endblock %}[m
+     </body>[m
+ </html>[m
