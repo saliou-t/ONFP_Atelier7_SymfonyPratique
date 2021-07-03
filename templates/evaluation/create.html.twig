@@ -1,0 +1,23 @@
+    {% extends 'base.html.twig' %}
+    {% form_theme formEval 'bootstrap_4_layout.html.twig' %}
+
+
+    {% block title %}Ajouter apprenant{% endblock %}
+        {% block body %}
+    <div class="container shadow mb-4 mt-5">
+        {{ form_start(formEval)}}
+            {{ form_row(formEval.nom,  {'attr': {'placeholder' :"Nom de l'evaluation"}}) }}
+            {{ form_row(formEval.date, {'attr':{'placeholder': "Date de l'avaluation"}}) }}
+            {{ form_row(formEval.heure, {'attr':{'placeholder': "heure de début"}}) }}
+            {{ form_row(formEval.duree, {'attr': {'placeholder':"Durée de l'évaluation"}})}}
+            {{ form_row(formEval.categorie, {'attr': {'placeholder':"catégorie"}})}}
+            
+            <button class="btn btn-success" type="submit" style=" margin-top: 20px">
+                Ajouter l'évaluation
+            </button>
+        {{ form_end(formEval)}}
+    </div>
+        {% endblock %}
+		
+    {% block javascripts %}{% endblock %}
+
