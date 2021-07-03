@@ -1,0 +1,23 @@
+    {% extends 'base.html.twig' %}
+    {% form_theme formApp 'bootstrap_4_layout.html.twig' %}
+
+
+    {% block title %}Ajouter apprenant{% endblock %}
+        {% block body %}
+    <div class="container shadow mb-4 mt-5">
+        {{ form_start(formApp)}}
+            {{ form_row(formApp.nom,  {'attr': {'placeholder' :"Nom"}}) }}
+            {{ form_row(formApp.prenom, {'attr':{'placeholder': "Prenom"}}) }}
+            {{ form_row(formApp.niveau_etude, {'attr': {'placeholder':"Niveau d'etude"}})}}
+            {{ form_row(formApp.telephone, {'attr': {'placeholder':"Téléphone"}})}}
+            {{ form_row(formApp.attentes, {'attr': {'placeholder':"Vos attentes"}})}}
+            
+            <button class="btn btn-success" type="submit" style=" margin-top: 20px">
+                Ajouter l'apprenant
+            </button>
+        {{ form_end(formApp)}}
+    </div>
+        {% endblock %}
+		
+    {% block javascripts %}{% endblock %}
+
