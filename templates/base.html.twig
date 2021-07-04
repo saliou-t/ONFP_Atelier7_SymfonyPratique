@@ -5,6 +5,9 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+            <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+            <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+            <link rel="icon" href="https://images.unsplash.com/photo-1613859080556-6e1e98c98723?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60">
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
@@ -14,6 +17,35 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Sama School</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Apprenants</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Formations</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Insert Apprenant</a>
+        </li>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Insert Evaluation</a>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+        {% block body %}
+
+        {% endblock %}
     </body>
 </html>
