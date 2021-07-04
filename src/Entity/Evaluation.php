@@ -34,6 +34,21 @@ class Evaluation
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="time", length=15, nullable=true)
+     */
+    private $heure;
+
+    /**
+     * @ORM\Column(type="time", length=15, nullable=true)
+     */
+    private $duree;
+
     public function __construct()
     {
         $this->idApprenant = new ArrayCollection();
@@ -88,6 +103,42 @@ class Evaluation
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getHeure(): ?\DateTimeInterface
+    {
+        return $this->heure;
+    }
+
+    public function setHeure(?\DateTimeInterface $heure): self
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+
+    public function getDuree(): ?\DateTimeInterface
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?\DateTimeInterface $duree): self
+    {
+        $this->duree = $duree;
 
         return $this;
     }
